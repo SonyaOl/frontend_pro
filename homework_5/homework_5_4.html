@@ -14,8 +14,23 @@
         // 5.4 Дано ціле число (ввести через 'prompt'). З'ясувати, чи просто воно (простим називається число, більше 1, що не має інших дільників, крім 1 і себе).
 
 
-        let num = prompt("Введіть число");
-        for (let i = num;)
+        let num = +prompt("Введіть число");
+        let simple = true;
+        if (num <= 1) {
+            simple = false;
+        } else {
+            for (let i = 2; i < num; i++) {
+                if (num % i == 0) {
+                    simple = false;
+                    break;
+                }
+            }
+        }
+        if (simple) {
+            console.log("Число просте");
+        } else {
+            console.log("Число складне");
+        }
     </script>
 
 </body>
