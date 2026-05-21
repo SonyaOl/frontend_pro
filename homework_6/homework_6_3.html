@@ -12,7 +12,39 @@
 
     <script>
         // 6.3 Створіть об'єкт, який матиме одну властивість з масивом об'єктів. Які представляють контакти у вашій контактній книзі. Кожен об'єкт має містити ім'я, номер телефону та адресу електронної пошти. Додайте метод для пошуку контакту за ім'ям та метод для додавання нових контактів.
-        const data = {}
+        const data = {
+            contacts: [{
+                    name: 'sofia',
+                    number: '066885935',
+                    email: 'sofia@gmail.com',
+                },
+                {
+                    name: 'ivan',
+                    number: '066885935',
+                    email: 'ivan@gmail.com'
+                }
+            ],
+            getName: function (name) {
+                for (let key in this.contacts) {
+                    if (name == this.contacts[key].name) {
+                        return `${name}: ${this.contacts[key].number}, ${this.contacts[key].email}`;
+                    }
+
+                }
+                return "Такого контакту не має";
+
+            },
+            pushNew: function (addName, addNumber, addEmail) {
+                this.contacts.push({
+                    name: addName,
+                    number: addNumber,
+                    email: addEmail
+                })
+            }
+        }
+        console.log(data.getName("sofia"));
+        data.pushNew("marian", "065896254", "marian@gmail.com");
+        console.log(data);
     </script>
 
 </body>
