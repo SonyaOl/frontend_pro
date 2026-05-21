@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 4.2 Дано тризначне число, яке надае користувач, потрибно визначити:
+        // Чи правда, що всі цифри однакові?
+        // Чи є серед цифр цифри однакові?
+
+        let num = prompt("Введіть трьохзначне число");
+        if (num[0] == num[1] && num[1] == num[2]) {
+            alert("Всі числа однакові");
+        } else if (num[0] == num[1] || num[0] == num[2] || num[1] == num[2]) {
+            alert("Так серед цифр є однакові");
+        } else {
+            alert("Немає однакових цифр");
+        }
+    </script>
+
+</body>
+
+</html>
