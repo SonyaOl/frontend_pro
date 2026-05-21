@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 6.1 Створіть об'єкт, що містить інформацію про користувача, таку як ім'я, вік, місце проживання тощо. Створіть метод об'єкту для отримання та відображення цих даних.
+        const data = {
+            Name: 'Sofia',
+            Age: 23,
+            Location: 'Lviv',
+            getInfo: function () {
+                return `Name: ${this.Name}, Age: ${this.Age}, Location: ${this.Location}`;
+            }
+        };
+
+        console.log(data.getInfo());
+    </script>
+
+</body>
+
+</html>
