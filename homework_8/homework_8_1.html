@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 8.1 Написати функцію, яка приймає 1 параметр. Та скадае значення з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад:
+
+
+        function sum(value) {
+            let result = 0;
+
+            return function output() {
+                result += value;
+                return result;
+            }
+
+
+        }
+
+        console.log(sum(4)); // 4
+    </script>
+
+</body>
+
+</html>
