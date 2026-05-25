@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 7.2 Дано масив з елементами різних типів. Створити функцію яка вираховує середнє арифметичне лише числових елементів даного масиву.
+
+        let data = [1, "hello", true, 2, 3];
+
+        function getData(x) {
+            let sum = 0;
+            let num = 0;
+            for (let i = 0; i < x.length; i++) {
+                if (typeof x[i] === "number") {
+                    sum += x[i];
+                    num++;
+
+
+                }
+            }
+            return sum / num;
+        }
+
+        console.log(getData(data));
+    </script>
+
+</body>
+
+</html>

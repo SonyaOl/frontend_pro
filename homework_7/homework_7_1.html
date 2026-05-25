@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 7.1 Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". Вихідний рядок та символи для видалення задає користувач.
+
+
+        function deleteItems(data, items) {
+            let value = "";
+            for (let item of data) {
+                if (!isCharIncluded(items, item)) {
+                    value += item;
+                }
+            }
+            return value;
+        }
+
+        function isCharIncluded(array, char) {
+            for (let item of array) {
+                if (item === char) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        deleteItems("hello world", ['l', 'd']);
+    </script>
+
+</body>
+
+</html>
