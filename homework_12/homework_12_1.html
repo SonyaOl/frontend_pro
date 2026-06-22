@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div>
+        <button class="btn-1">Send URL</button>
+        <button class="btn-2">Press me</button>
+    </div>
+
+
+    <script>
+        //На сторінці є дві кнопки. При натисканні на першу кнопку користувач повинен ввести в prompt посилання, при натисканні на другу – переадресовується на інший сайт (за раніше введеним посиланням).
+        let btn1 = document.querySelector('.btn-1');
+        let btn2 = document.querySelector('.btn-2');
+        btn1.addEventListener('click', writeUrl);
+        btn2.addEventListener('click', sendUrl);
+        let data = '';
+
+        function writeUrl() {
+            data = prompt('Напишіть URL');
+        }
+
+        function sendUrl() {
+            window.location.href = data;
+        }
+    </script>
+
+</body>
+
+</html>
