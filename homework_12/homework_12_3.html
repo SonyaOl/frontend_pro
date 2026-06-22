@@ -18,7 +18,7 @@
 <body>
 
     <ul class="list">
-        <li class="task-1">Complete Homework</li>
+        <li class="task-1">Complete Homework<button>Delete</button></li>
     </ul>
     <input type="text" class="input">
     <button class="send">Send</button>
@@ -42,13 +42,18 @@
         send.addEventListener('click', addNew);
 
         function deleteTask(event) {
-            event.target.remove();
+            if (event.target.tagName === 'BUTTON') {
+                event.target.parentElement.remove();
+            }
         }
 
         function addNew() {
             let li = document.createElement('li');
+            let button = document.createElement('button');
+            button.textContent = 'Delete';
             li.textContent = data.value;
             list.appendChild(li);
+            li.appendChild(button);
             data.value = '';
 
         }
