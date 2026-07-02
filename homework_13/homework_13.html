@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 320px;
+        }
+
+        input,
+        textarea {
+            padding: 8px;
+        }
+
+        /* стиль для повідомлення про помилку */
+        .error-message {
+            color: red;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* червона рамка для невалідного поля */
+        .invalid {
+            border: 1px solid red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>We would like to help you</h1>
+    <form novalidate>
+        <input class="name" type="text" placeholder="Name">
+        <textarea type="text" placeholder="Message" class="text"></textarea>
+        <label>How to answer you?</label>
+        <input type="tel" placeholder="Phone" class="phone">
+        <input type="email" placeholder="Email" class="email">
+        <button type="submit" class="send-btn">Send message</button>
+    </form>
+
+
+
+
+    <script>
+        // Доробити валідацію для надсилання повідомлення з використанням регулярних виразів:
+
+        // Поля:
+
+        // Name - обов 'язкове текстове поле
+        //Message - текстове поле не менше 5 символів
+        //Phone number - обов 'язкове поле типу phone. З початком на +380
+        //Email - email обов 'язково повинен мати @ та крапку
+        //Після відправки, в консоль відображаємо дані, які ввів користувач.
+
+        //Під час помилки показувати її під полем.
+
+        let send = document.querySelector('.send-btn');
+        let form = document.querySelector('form');
+        let name = document.querySelector('.name');
+        let email = document.querySelector('.email');
+        let phone = document.querySelector('.phone');
+        let text = document.querySelector('.text');
+        form.addEventListener('submit', submit);
+
+        function submit(event) {
+            event.preventDefault();
+            clearMessage();
+            let validate = true;
+            let nameValue = name.value;
+            let emailValue = email.value;
+            let phoneValue = phone.value;
+            let textValue = text.value;
+            const phoneRegex = /^\+380\d{9}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (nameValue.trim() === '') {
+                showError(name, "Це обов'язкове тестове поле ");
+                validate = false;
+            }
+            if (textValue.length < 5) {
+                showError(text, "Текстове поле повинне бути не менше 5 символів");
+                validate = false;
+            }
+            if (!phoneRegex.test(phoneValue)) {
+                showError(phone, "Обов'язкове поле типу phone. З початком на +380");
+                validate = false;
+            }
+            if (!emailRegex.test(emailValue)) {
+                showError(email, "Email обов 'язково повинен мати @ та крапку");
+                validate = false;
+            }
+            if (validate)
+                console.log({
+                    name: nameValue,
+                    text: textValue,
+                    phone: phoneValue,
+                    email: emailValue
+                });
+
+        }
+
+
+        function clearMessage() {
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+        }
+
+
+
+        function showError(field, message) {
+            let errorDiv = document.createElement('div');
+            errorDiv.classList.add('error-message');
+            errorDiv.textContent = message;
+            field.after(errorDiv);
+        }
+    </script>
+
+</body>
+
+</html>
