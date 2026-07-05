@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            background: #e9edf2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* біла зовнішня картка */
+        .slider {
+            position: relative;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            max-width: 1100px;
+            width: 100%;
+            padding: 60px 90px 30px;
+        }
+
+        /* обгортка, що ховає неактивні слайди */
+        .slider-window {
+            overflow: hidden;
+        }
+
+        /* стрічка зі слайдами */
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        /* один слайд: фото + сірий блок з текстом */
+        .slide {
+            min-width: 100%;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f2f4f7;
+        }
+
+        /* плейсхолдер замість фото */
+        .slide-photo {
+            flex: 0 0 300px;
+            min-height: 320px;
+            background: #cfd6de;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a94a0;
+            font-size: 60px;
+            font-weight: 700;
+        }
+
+        .slide-content {
+            padding: 36px 44px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* синій надзаголовок КОМАНДА> */
+        .slide-label {
+            color: #2f9df4;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        .slide-label::after {
+            content: '›';
+            margin-left: 4px;
+        }
+
+        /* рожева цитата з градієнтом */
+        .slide-quote {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.25;
+            background: linear-gradient(90deg, #f2506e, #f47b6a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: auto;
+        }
+
+        .slide-name {
+            margin-top: 28px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #3c4450;
+        }
+
+        .slide-role {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #9aa3ad;
+        }
+
+        /* круглі кнопки-стрілки */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: #2f9df4;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(47, 157, 244, 0.4);
+            transition: background 0.2s;
+        }
+
+        .slider-btn:hover {
+            background: #1c86d9;
+        }
+
+        .slider-btn.prev {
+            left: 24px;
+        }
+
+        .slider-btn.next {
+            right: 24px;
+        }
+
+        /* крапки-індикатори */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: none;
+            border-radius: 50%;
+            background: #cfe6fb;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .none {
+            display: none;
+        }
+
+        .dot.active {
+            background: #2f9df4;
+        }
+
+        /* адаптив для мобільних */
+        @media (max-width: 768px) {
+            .slider {
+                padding: 40px 20px 24px;
+            }
+
+            .slide {
+                flex-direction: column;
+            }
+
+            .slide-photo {
+                flex: none;
+                min-height: 180px;
+            }
+
+            .slide-quote {
+                font-size: 22px;
+            }
+
+            .slider-btn.prev {
+                left: 8px;
+            }
+
+            .slider-btn.next {
+                right: 8px;
+            }
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="slider">
+        <button class="slider-btn prev none" type="button">‹</button>
+
+        <div class="slider-window">
+            <div class="slider-track">
+
+                <div class="slide">
+                    <div class="slide-photo">
+                        <img src="img/1.jpg" alt="" class="img">
+                    </div>
+                    <div class="slide-content">
+                        <a href="#" class="slide-label">Команда</a>
+                        <p class="slide-quote">Ми звикли брати на себе відповідальність та завжди гарантуємо чесну,
+                            вчасну допомогу, навіть у ситуаціях, коли більшість безсилі.</p>
+                        <p class="slide-name">Олександр Олександровський</p>
+                        <p class="slide-role">Керуючий партнер</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-btn next" type="button">›</button>
+
+        <div class="slider-dots">
+            <button class="dot active" type="button"></button>
+            <button class="dot" type="button"></button>
+            <button class="dot" type="button"></button>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        //Пишемо свій слайдер зображень, який повинен:
+
+        //Відображати зображення та кнопки Next, Prev з боків від зображення.
+        //При кліку на Next - показуємо наступне зображення.
+        //При кліку на Prev - попереднє
+        //При досягненні останнього зображення - ховати кнопку Next.Аналогічно з першим зображенням і кнопкою Prev
+        //Кількість слайдів може бути будь - якою
+        //Додати можливість навігації через точки під слайдами
+        let btnPrev = document.querySelector('.prev');
+        let btnNext = document.querySelector('.next');
+        let img = document.querySelector('.img');
+        let dots = document.querySelectorAll('.dot');
+        btnPrev.addEventListener('click', prevImg);
+        btnNext.addEventListener('click', nextImg);
+
+        let count = 0;
+
+        dots.forEach(function (el, i) {
+            el.addEventListener('click', function () {
+                count = i;
+                dataSlider();
+            });
+        });
+
+        function nextImg() {
+            count++
+            dataSlider()
+        }
+
+        function prevImg() {
+            count--
+            dataSlider()
+        }
+
+
+        function dataSlider() {
+            img.setAttribute('src', `img/${count + 1}.jpg`);
+
+            if (count == 0) {
+                btnPrev.classList.add('none');
+            } else {
+                btnPrev.classList.remove('none');
+            }
+            if (count == 2) {
+                btnNext.classList.add('none');
+            } else {
+                btnNext.classList.remove('none');
+            }
+
+
+            dots.forEach(function (el, i) {
+                if (i == count) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>
