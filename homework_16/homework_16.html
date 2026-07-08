@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+    <script>
+        //Вам потрібно зробити конструктор сутності "Студент". Студент має ім'я, прізвище, рік народження — це властивості. Є масив з оцінками, це також властивість. І є можливість отримати вік студента та його середній бал – це методи.
+
+        //Ще у всіх Студентів є по масиву однакової довжини, у ньому 25 елементів, спочатку він не заповнений, але на 25 елементів. Це масив, в якому відзначається відвідуваність, щоразу коли ми викликаємо метод .present() на чергове порожнє місце, в масив записується true, коли викликаємо .absent() - записується false. Передбачте будь-який захист від того, щоб у масиві відвідуваності не могло бути більше 25 записів. Масив – це властивість, present та absent – методи.
+
+        //Останній метод: .summary(), перевіряє середню оцінку і середнє відвідування(кількістьВідвідин/кількістьЗанять), і якщо середня оцінка більше 90, а середнє відвідування більше 0.9, то метод summary повертає рядок "Молодець!", якщо одне з цих значень менше , то - "Добре, але можна краще ", якщо обидва нижче - "Редиска!".
+
+        //Не забудьте після того, як напишите цей конструктор, створити 2-3 екземпляри (конкретних студентів) і показати використання цих методів.
+
+
+        function Student(name, lastname, birth_year, marks) {
+            this.name = name;
+            this.lastname = lastname;
+            this.birth_year = birth_year;
+            this.marks = marks;
+            this.time = [];
+            this.count = 0;
+            this.getAge = function () {
+                return new Date().getFullYear() - birth_year;
+            }
+            this.getAvarageMark = function () {
+                let allMarks = this.marks.reduce((acc, mark) => acc + mark, 0);
+                return allMarks / this.marks.length
+            }
+            this.present = function () {
+                if (this.time.length > 25) {
+                    return
+                }
+                this.time[this.count] = true;
+                this.count++
+            }
+            this.absent = function () {
+                if (this.time.length > 25) {
+                    return
+                }
+                this.time[this.count] = false;
+                this.count++
+            }
+            this.getAvaragePresent = function () {
+                let journal = 0;
+                for (let i = 0; i < this.time.length; i++) {
+                    if (this.time[i] == true) {
+                        journal += 1;
+                    }
+                }
+                return journal / this.time.length;
+            }
+            this.summary = function () {
+                if (this.getAvarageMark() > 90 && this.getAvaragePresent() > 0.9) {
+                    return 'Молодець';
+                } else if (this.getAvarageMark() < 90 && this.getAvaragePresent() < 0.9) {
+                    return "Редиска!";
+                } else {
+                    return "Добре, але можна краще";
+                }
+            }
+        }
+
+
+        let student1 = new Student('Ivan', 'Holod', 2000, [100, 5, 75, 34, 88]);
+        console.log(student1.getAge());
+        console.log(student1.getAvarageMark());
+        student1.present();
+        student1.absent();
+        student1.present();
+        student1.present();
+        console.log(student1.getAvaragePresent());
+        console.log(student1.summary());
+
+
+        let student2 = new Student('Maks', 'Golod', 2004, [100, 100, 90, 99, 98]);
+        console.log(student2.getAge());
+        console.log(student2.getAvarageMark());
+        student2.present();
+        student2.absent();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        student2.present();
+        console.log(student2.getAvaragePresent());
+        console.log(student2.summary());
+
+
+        let student3 = new Student('Vika', 'Motyka', 1998, [50, 65, 70, 44, 30]);
+        console.log(student3.getAge());
+        console.log(student3.getAvarageMark());
+        student3.absent();
+        student3.absent();
+        student3.absent();
+        student3.absent();
+        console.log(student3.getAvaragePresent());
+        console.log(student3.summary());
+    </script>
+
+</body>
+
+</html>
