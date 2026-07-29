@@ -73,11 +73,11 @@ list.addEventListener('click', function (event) {
     if (event.target.checked) {
         const li = event.target.closest('.todo-item');
         li.classList.add('todo-item--checked');
-        event.target.setAttribute('checked', '');
+        event.target.setAttribute('checked');
     } else {
         const li = event.target.closest('.todo-item');
         li.classList.remove('todo-item--checked');
-        event.target.removeAttribute('checked', '');
+        event.target.removeAttribute('checked', );
     }
     saveTasks();
 });
