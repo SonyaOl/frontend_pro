@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather widget</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(226, 232, 201);
+            font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        .widget {
+            background: linear-gradient(160deg, #2a3f8f 0%, #1b2a6b 60%, #16215c 100%);
+            border-radius: 20px;
+            padding: 28px 32px;
+            color: #ffffff;
+            width: 100%;
+            max-width: 560px;
+            box-sizing: border-box;
+        }
+
+        .date {
+            font-size: 26px;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 22px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .status-row span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .main-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .time {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .time .value {
+            font-size: 56px;
+            font-weight: 500;
+        }
+
+        .time .period {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .weather-icon-col {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .weather-icon-wrap {
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+        .weather-icon-wrap .sun {
+            width: 52px;
+            height: 52px;
+            color: #ffd34d;
+            position: absolute;
+            top: 0;
+            left: 6px;
+        }
+
+        .weather-icon-wrap .cloud {
+            width: 36px;
+            height: 36px;
+            color: #e8ecf4;
+            position: absolute;
+            bottom: 0;
+            left: 14px;
+        }
+
+        .temp {
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 22px;
+            font-size: 16px;
+        }
+
+        .details-row .left,
+        .details-row .right {
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .details-row .right {
+            text-align: right;
+        }
+
+        .details-row .right .condition {
+            font-weight: 500;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 22px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .refresh-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .refresh-btn {
+            background: transparent;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .refresh-btn .icon {
+            width: 18px;
+            height: 18px;
+            color: #ffffff;
+            transition: transform 0.5s ease;
+        }
+
+        .refresh-btn.spin .icon {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="widget">
+
+
+        <div class="status-row">
+            <span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="13" r="8" />
+                    <path d="M12 9v4l2 2" />
+                    <path d="M5 3 3 5" />
+                    <path d="M19 3l2 2" /></svg>
+                <span class="sunrise"></span>
+            </span>
+            <span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="16" height="10" rx="2" />
+                    <path d="M22 10v4" />
+                    <path d="M6 10v4" /></svg>
+                27%
+            </span>
+        </div>
+
+        <div class="main-row">
+
+
+            <div class="weather-icon-col">
+                <div class="weather-icon-wrap">
+                    <img src="" alt="Weather Picture" width="70" height="70" class="image">
+
+                </div>
+                <div class="temp"></div>
+            </div>
+        </div>
+
+        <div class="details-row">
+            <div class="left">
+                <div class="humidity"></div>
+                <div class="pressure"></div>
+            </div>
+            <div class="right">
+                <div class="feels-like"></div>
+                <div class="condition"></div>
+            </div>
+        </div>
+
+        <div class="footer-row">
+            <span class="wind"></span>
+            <span class="refresh-line">
+
+                <button class="refresh-btn" id="refresh-btn" aria-label="Refresh">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4" />
+                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2M20 19v-4h-4" /></svg>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        //За допомогою запиту вивести виджет погоди. Ресурс API https://openweathermap.org/current
+
+        //Також потрібно додати кнопку оновлення данних.
+        let description = document.querySelector('.condition');
+        let humidity = document.querySelector('.humidity');
+        let pressure = document.querySelector('.pressure');
+        let wind = document.querySelector('.wind');
+        let feelTemp = document.querySelector('.feels-like');
+        let temp = document.querySelector('.temp');
+        let img = document.querySelector('.image');
+        let refresh = document.querySelector('.refresh-btn');
+        let sunrise = document.querySelector('.sunrise');
+        let apiKey = '2d833a738291140333b8a75ce3164554';
+
+
+        function getWeather() {
+            return fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?q=Lviv,UA&appid=${apiKey}&lang=uk&units=metric`)
+                .then(response => response.json())
+                .then(data => {
+                    description.textContent = data.weather[0].description;
+                    humidity.innerHTML = `Humidity: ${data.main.humidity}%`;
+                    pressure.innerHTML = `Pressure: ${data.main.pressure} hPa`;
+                    wind.innerHTML = `Wind Speed: ${data.wind.speed} m/s`;
+                    feelTemp.innerHTML = `Feels like: ${Math.round(data.main.feels_like)}°C`;
+                    temp.innerHTML = `${Math.round(data.main.temp)}°C`;
+                    img.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    const sunriseTime = new Date(
+                        (data.sys.sunrise + data.timezone) * 1000
+                    ).toLocaleTimeString('uk-UA', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        timeZone: 'UTC'
+                    });
+                    sunrise.innerHTML = `SUN ${sunriseTime}`;
+                })
+                .catch(error => console.log(error));
+        }
+
+        getWeather()
+
+        refresh.onclick = getWeather;
+    </script>
+
+</body>
+
+</html>
