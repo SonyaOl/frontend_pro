@@ -1,0 +1,117 @@
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #f5f6f8;
+    color: #24272e;
+}
+
+.container {
+    max-width: 560px;
+    margin: 48px auto;
+    padding: 28px 32px 32px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .08);
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-size: 28px;
+}
+
+.form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form__input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid #ccd0d6;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form__input:focus {
+    outline: 2px solid #5b7cfa;
+    outline-offset: 1px;
+    border-color: transparent;
+}
+
+.form__btn {
+    padding: 9px 18px;
+    border: 0;
+    border-radius: 6px;
+    background: #5b7cfa;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form__btn:hover {
+    background: #4568f0;
+}
+
+.todos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 4px;
+    border-bottom: 1px solid #eceef1;
+}
+
+.todo-item:last-child {
+    border-bottom: 0;
+}
+
+.checkbox {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.todo-item__description {
+    flex: 1;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.todo-item__description:hover {
+    text-decoration: underline;
+}
+
+.todo-item--checked .todo-item__description {
+    text-decoration: line-through;
+    color: #9aa0a8;
+}
+
+.todo-item__delete {
+    padding: 5px 12px;
+    border: 1px solid #e2b6b6;
+    border-radius: 6px;
+    background: #fff;
+    color: #c0392b;
+    font-size: 13px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.todo-item__delete:hover {
+    background: #fdf0ef;
+}
+
+.empty {
+    margin: 12px 0 0;
+    color: #9aa0a8;
+    font-size: 14px;
+    text-align: center;
+}
