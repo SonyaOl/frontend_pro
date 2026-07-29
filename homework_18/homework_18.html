@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer {
+            font-size: 100px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+
+
+    <span class="timer"></span>
+
+
+    <script>
+        //Реалізувати таймер відліку:
+
+        //Початок таймера визначати із змінної
+        //Відобразити на сторінці час у форматі 01: 25
+        //Коли закінчився таймер зупинити його
+
+        let data = 120;
+        let output = document.querySelector('.timer');
+
+
+        let timer = setInterval(function () {
+            let min = Math.floor(data / 60);
+            let sec = data % 60;
+
+
+            let time = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+            output.innerHTML = time;
+            if (data == 0) {
+                return clearInterval(timer);
+            }
+            data--
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
