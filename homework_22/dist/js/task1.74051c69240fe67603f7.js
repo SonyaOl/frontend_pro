@@ -1,0 +1,1 @@
+(()=>{let e=document.querySelector(".color-button"),t=document.querySelector(".color-text");e.addEventListener("click",function(){t.classList.toggle("change-color")})})();

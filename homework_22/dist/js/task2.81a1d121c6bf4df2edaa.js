@@ -1,0 +1,1 @@
+(()=>{let t=Math.floor(4*Math.random())+1;document.querySelector("img").setAttribute("src",`img/${t}.jpg`)})();
