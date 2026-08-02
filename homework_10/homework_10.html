@@ -33,6 +33,16 @@
                 }]
             }
         };
+
+
+        function sumSalaries(node) {
+            if (Array.isArray(node)) {
+                return node.reduce((acc, person) => acc + person.salary, 0);
+            }
+            return Object.values(node).reduce((acc, subdep) => acc + sumSalaries(subdep), 0);
+        }
+
+        console.log(sumSalaries(company)); // 6700
     </script>
 
 </body>
